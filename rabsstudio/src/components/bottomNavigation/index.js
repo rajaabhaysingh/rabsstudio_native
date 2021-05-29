@@ -1,28 +1,28 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import LinearGradient from 'react-native-linear-gradient';
 
 // screens
 import {Home, Categories, Search, Account, Message} from '../../screens';
 
 // constants
-import {COLORS} from '../../constants';
 import {
   home as HomeIcon,
   categories as CategoriesIcon,
   search as SearchIcon,
   account as AccountIcon,
+  message as MessageIcon,
 } from '../../constants/icons';
 
 // static files
-// import HomeIcon from '../../assets/icons/home.svg';
 
 // initializing
 const Tab = createBottomTabNavigator();
 
 // styles
 import globalStyles from '../../styles/GlobalStyles';
+import {useTheme} from 'react-native-paper';
 
 // custom tabButtonComponent
 // == to be used later in this file ==
@@ -33,10 +33,20 @@ const TabBarCustomButton = ({
   center,
 }) => {
   let isSelected = accessibilityState.selected;
+  const {colors, dark} = useTheme();
 
   if (center) {
     return (
-      <TouchableOpacity style={styles.centerTabWrapper} onPress={onPress}>
+      <TouchableOpacity
+        style={[
+          styles.centerTabWrapper,
+          {
+            backgroundColor: dark ? colors.background : colors.paper,
+            borderWidth: dark ? 1 : 0,
+            borderColor: isSelected ? colors.primary : colors.divider,
+          },
+        ]}
+        onPress={onPress}>
         {children}
       </TouchableOpacity>
     );
@@ -53,11 +63,18 @@ const TabBarCustomButton = ({
 
 // main component
 const BottomNavigation = () => {
+  const {colors, dark} = useTheme();
+
   return (
     <Tab.Navigator
       tabBarOptions={{
         showLabel: false,
-        style: styles.root,
+        style: [
+          styles.root,
+          {
+            backgroundColor: colors.paper,
+          },
+        ],
       }}>
       <Tab.Screen
         name="Home"
@@ -66,18 +83,15 @@ const BottomNavigation = () => {
           tabBarIcon: ({focused}) => (
             <View style={styles.tabButtonWrapper}>
               <HomeIcon
-                style={[
-                  styles.tabIcon,
-                  {
-                    tintColor: focused ? COLORS.white : COLORS.secondary,
-                  },
-                ]}
+                style={styles.tabIcon}
+                fill={focused ? colors.primary : colors.text}
               />
               <Text
                 style={[
                   globalStyles.mt2,
+                  globalStyles.txtXs,
                   {
-                    color: focused ? COLORS.primary : COLORS.secondary,
+                    color: focused ? colors.primary : colors.text,
                   },
                 ]}>
                 Home
@@ -94,18 +108,15 @@ const BottomNavigation = () => {
           tabBarIcon: ({focused}) => (
             <View style={styles.tabButtonWrapper}>
               <CategoriesIcon
-                style={[
-                  styles.tabIcon,
-                  {
-                    tintColor: focused ? COLORS.white : COLORS.secondary,
-                  },
-                ]}
+                style={styles.tabIcon}
+                fill={focused ? colors.primary : colors.text}
               />
               <Text
                 style={[
                   globalStyles.mt2,
+                  globalStyles.txtXs,
                   {
-                    color: focused ? COLORS.primary : COLORS.secondary,
+                    color: focused ? colors.primary : colors.text,
                   },
                 ]}>
                 Categories
@@ -123,18 +134,15 @@ const BottomNavigation = () => {
           tabBarIcon: ({focused}) => (
             <View style={styles.tabButtonWrapper}>
               <SearchIcon
-                style={[
-                  styles.tabIcon,
-                  {
-                    tintColor: focused ? COLORS.white : COLORS.secondary,
-                  },
-                ]}
+                style={styles.tabIcon}
+                fill={focused ? colors.primary : colors.text}
               />
               <Text
                 style={[
                   globalStyles.mt2,
+                  globalStyles.txtXs,
                   {
-                    color: focused ? COLORS.primary : COLORS.secondary,
+                    color: focused ? colors.primary : colors.text,
                   },
                 ]}>
                 Search
@@ -150,19 +158,16 @@ const BottomNavigation = () => {
         options={{
           tabBarIcon: ({focused}) => (
             <View style={styles.tabButtonWrapper}>
-              <CategoriesIcon
-                style={[
-                  styles.tabIcon,
-                  {
-                    tintColor: focused ? COLORS.white : COLORS.secondary,
-                  },
-                ]}
+              <MessageIcon
+                style={styles.tabIcon}
+                fill={focused ? colors.primary : colors.text}
               />
               <Text
                 style={[
                   globalStyles.mt2,
+                  globalStyles.txtXs,
                   {
-                    color: focused ? COLORS.primary : COLORS.secondary,
+                    color: focused ? colors.primary : colors.text,
                   },
                 ]}>
                 Message
@@ -179,18 +184,15 @@ const BottomNavigation = () => {
           tabBarIcon: ({focused}) => (
             <View style={styles.tabButtonWrapper}>
               <AccountIcon
-                style={[
-                  styles.tabIcon,
-                  {
-                    tintColor: focused ? COLORS.white : COLORS.secondary,
-                  },
-                ]}
+                style={styles.tabIcon}
+                fill={focused ? colors.primary : colors.text}
               />
               <Text
                 style={[
                   globalStyles.mt2,
+                  globalStyles.txtXs,
                   {
-                    color: focused ? COLORS.primary : COLORS.secondary,
+                    color: focused ? colors.primary : colors.text,
                   },
                 ]}>
                 Account
@@ -212,8 +214,7 @@ const styles = StyleSheet.create({
     right: 16,
     height: 48,
     borderRadius: 100,
-    // borderTopWidth: 0,
-    backgroundColor: COLORS.white,
+    borderTopWidth: 0,
     ...globalStyles.shadSm,
   },
   tabButtonWrapper: {
@@ -232,7 +233,6 @@ const styles = StyleSheet.create({
     width: 72,
     height: 72,
     borderRadius: 100,
-    backgroundColor: COLORS.white,
     ...globalStyles.shadSm,
   },
   activeTabContent: {

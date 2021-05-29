@@ -14,10 +14,13 @@ import stationary_icon from '../assets/icons/stationary.svg';
 import trifold_icon from '../assets/icons/trifold.svg';
 import website_icon from '../assets/icons/website.svg';
 
-import home_icon from '../assets/icons/home.svg';
-import categories_icon from '../assets/icons/categories.svg';
-import account_icon from '../assets/icons/account.svg';
-import search_icon from '../assets/icons/search.svg';
+import home_icon from '../assets/icons/home2.svg';
+import categories_icon from '../assets/icons/categories2.svg';
+import account_icon from '../assets/icons/account2.svg';
+import search_icon from '../assets/icons/search2.svg';
+import message_icon from '../assets/icons/message.svg';
+import menu_icon from '../assets/icons/hamburger.svg';
+import notification_icon from '../assets/icons/notification.svg';
 
 export const banner = banner_icon;
 export const book_cover = book_cover_icon;
@@ -38,6 +41,9 @@ export const home = home_icon;
 export const categories = categories_icon;
 export const account = account_icon;
 export const search = search_icon;
+export const hamburger = menu_icon;
+export const notification = notification_icon;
+export const message = message_icon;
 
 export default {
   banner,
@@ -59,4 +65,7 @@ export default {
   categories,
   account,
   search,
+  hamburger,
+  notification,
+  message,
 };

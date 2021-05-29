@@ -30,12 +30,32 @@ const globalStyles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
+  shadMd: {
+    shadowColor: '#000',
+    shadowOffset: {
+      height: 4,
+      width: 0,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 4,
+  },
   // background Colors
   bgPri: {
     backgroundColor: COLORS.primary,
   },
   bgTrans: {
     backgroundColor: 'transparent',
+  },
+  bgWhite: {
+    backgroundColor: COLORS.white,
+  },
+  bgBody: {
+    backgroundColor: COLORS.lightGray1,
+  },
+  // fontsize
+  txtXs: {
+    fontSize: 10,
   },
 });
 

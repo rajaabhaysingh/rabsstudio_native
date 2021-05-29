@@ -12,6 +12,10 @@ export const COLORS = {
   white: '#FFFFFF',
   red: '#FA003F',
 
+  // themeing
+  paper_dark: '#1e1e1e',
+  paper_light: '#ffffff',
+
   // gradient srt
   wood_l: '#eacda3',
   wood_r: '#d6ae7b',
